@@ -23,7 +23,6 @@ exemplos de uso para cada um deles através de exemplos.</p>
 <tr>
 <th>Tipo</th>
 <th>Intervalo</th>
-<th>Exemplo</th>
 </tr>
 </thead>
 <tbody>

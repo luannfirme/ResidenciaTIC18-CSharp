@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula - Exercicio 3", "Seman
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula - Exercicio 4", "Semana 2\Aula - Exercicio 4\Aula - Exercicio 4.csproj", "{9D2790E3-C4AE-4927-A87B-984474E6923E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Semana 3", "Semana 3", "{56B01423-2435-4505-A97A-5A920002CDB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula - Exercicio 1", "Semana 3\Aula - Exercicio 1\Aula - Exercicio 1.csproj", "{21B0FC00-C6FC-42FD-BA8D-377A6D9BF891}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{9D2790E3-C4AE-4927-A87B-984474E6923E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D2790E3-C4AE-4927-A87B-984474E6923E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D2790E3-C4AE-4927-A87B-984474E6923E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B0FC00-C6FC-42FD-BA8D-377A6D9BF891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B0FC00-C6FC-42FD-BA8D-377A6D9BF891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B0FC00-C6FC-42FD-BA8D-377A6D9BF891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B0FC00-C6FC-42FD-BA8D-377A6D9BF891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{7636116F-5DCC-4505-B3F3-639FD5724775} = {70275A08-9256-4F0B-A253-EBAF52A7BF4F}
 		{82BC56BA-4D84-4C7C-8A6F-05C89582786E} = {70275A08-9256-4F0B-A253-EBAF52A7BF4F}
 		{9D2790E3-C4AE-4927-A87B-984474E6923E} = {70275A08-9256-4F0B-A253-EBAF52A7BF4F}
+		{21B0FC00-C6FC-42FD-BA8D-377A6D9BF891} = {56B01423-2435-4505-A97A-5A920002CDB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17465C6A-C3CA-442F-B1AC-6050F29C486C}

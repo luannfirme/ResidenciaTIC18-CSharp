@@ -14,7 +14,7 @@ public class Menu
             Console.WriteLine("");
             Console.WriteLine("------- CONTROLE DE CONSULTORIO -------");
             Console.WriteLine("1 - CADASTRAR MEDICO");
-            Console.WriteLine("2 - CONSULTAR PACIENTE");
+            Console.WriteLine("2 - CADASTRAR PACIENTE");
             Console.WriteLine("3 - GERAR RELATÓRIO");
             Console.WriteLine("0 - SAIR");
             Console.Write("Escolha uma opção: ");

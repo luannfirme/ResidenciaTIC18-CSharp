@@ -8,16 +8,16 @@ public class Medico : Pessoa
     {
         var cpfExistente = cpfs.Where(c => c == Cpf);
 
-        if (!cpfExistente.Any())
+        if (cpfExistente.Any())
             return false;
 
         return true;
     }
 
     public bool ValidarCrm(List<Medico> medicos){
-        var crmExistente = medicos.FirstOrDefault(m => m.Crm == Crm);
+        var crmExistente = medicos.Where(m => m.Crm == Crm);
 
-        if (crmExistente != null)
+        if (crmExistente.Any())
             return false;
 
         return true;

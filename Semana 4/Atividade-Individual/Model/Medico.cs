@@ -6,9 +6,9 @@ public class Medico : Pessoa
 
     public override bool ValidarCpf(List<string> cpfs)
     {
-        var cpfExistente = cpfs.FirstOrDefault(Cpf);
+        var cpfExistente = cpfs.Where(c => c == Cpf);
 
-        if (cpfExistente == null)
+        if (!cpfExistente.Any())
             return false;
 
         return true;
@@ -17,7 +17,7 @@ public class Medico : Pessoa
     public bool ValidarCrm(List<Medico> medicos){
         var crmExistente = medicos.FirstOrDefault(m => m.Crm == Crm);
 
-        if (crmExistente == null)
+        if (crmExistente != null)
             return false;
 
         return true;

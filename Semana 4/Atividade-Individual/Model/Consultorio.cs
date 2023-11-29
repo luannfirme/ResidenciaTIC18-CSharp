@@ -32,8 +32,11 @@ public class Consultorio
                 Crm = crm
             };
 
-            var cpfs = Medicos.Select(c => c.Cpf).ToList();
+            var cpfs = new List<string>();
 
+            foreach(var m in Medicos)
+                    cpfs.Add(m.Cpf);
+                    
             if (!medico.ValidarCpf(cpfs))
                 throw new ConsultorioException("\nCPF já existe.");
 

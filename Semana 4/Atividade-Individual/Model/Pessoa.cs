@@ -9,10 +9,9 @@ public class Pessoa
 public virtual bool ValidarCpf(List<string> cpfs){
     var cpfExistente = cpfs.FirstOrDefault(Cpf);
 
-    if(cpfExistente == null)
+    if(cpfExistente != null)
         return false;
 
     return true;
 }
-
 }

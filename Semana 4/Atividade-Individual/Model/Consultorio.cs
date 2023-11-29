@@ -32,8 +32,13 @@ public class Consultorio
                 Crm = crm
             };
             
-            // if (!medico.ValidarCpf())
-            //     throw new ConsultorioException("\nCRM já existe.");
+            var cpfs = new List<string>();
+
+            foreach(var m in Medicos)
+                cpfs.Add(m.Cpf);
+
+            if (!medico.ValidarCpf(cpfs))
+                throw new ConsultorioException("\nCPF já existe.");
 
             if (!medico.ValidarCrm(Medicos))
                 throw new ConsultorioException("\nCRM já existe.");
@@ -41,8 +46,6 @@ public class Consultorio
             Medicos.Add(medico);
 
             Console.WriteLine("\nMédico cadastrado com sucesso!");
-
-            // Menu.MenuContinuarCadastro(this);
         }
         catch (FormatException)
         {
@@ -90,14 +93,17 @@ public class Consultorio
                 Sitomas = sintomas
             };
             
-            if (!paciente.ValidarCpf(Pacientes.))
-                throw new ConsultorioException("\nCRM já existe.");
+            var cpfs = new List<string>();
+
+            foreach(var p in Pacientes)
+                cpfs.Add(p.Cpf);
+
+            if (!paciente.ValidarCpf(cpfs))
+                throw new ConsultorioException("\nCPF já existe.");
 
             Pacientes.Add(paciente);
 
             Console.WriteLine("\nMédico cadastrado com sucesso!");
-
-            // Menu.MenuContinuarCadastro(this);
         }
         catch (FormatException)
         {

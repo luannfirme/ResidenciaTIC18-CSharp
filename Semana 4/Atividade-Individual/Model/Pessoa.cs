@@ -6,8 +6,8 @@ public class Pessoa
     public string Cpf { get; set; }
     public DateOnly DataDeNascimento { get; set; }
 
-public virtual bool ValidarCpf(List<Pessoa> pessoas){
-    var cpfExistente = pessoas.FirstOrDefault(p => p.Cpf == Cpf);
+public virtual bool ValidarCpf(List<string> cpfs){
+    var cpfExistente = cpfs.FirstOrDefault(Cpf);
 
     if(cpfExistente == null)
         return false;

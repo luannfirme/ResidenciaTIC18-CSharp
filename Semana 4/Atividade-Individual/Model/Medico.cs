@@ -4,9 +4,9 @@ public class Medico : Pessoa
 {
     public string Crm { get; set; }
 
-    public override bool ValidarCpf(List<Pessoa> pessoas)
+    public override bool ValidarCpf(List<string> cpfs)
     {
-        var cpfExistente = pessoas.FirstOrDefault(m => m.Cpf == Cpf);
+        var cpfExistente = cpfs.FirstOrDefault(Cpf);
 
         if (cpfExistente == null)
             return false;

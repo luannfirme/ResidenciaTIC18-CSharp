@@ -31,10 +31,10 @@ public class Consultorio
                 DataDeNascimento = dataNascimento,
                 Crm = crm
             };
-            
+
             var cpfs = new List<string>();
 
-            foreach(var m in Medicos)
+            foreach (var m in Medicos)
                 cpfs.Add(m.Cpf);
 
             if (!medico.ValidarCpf(cpfs))
@@ -93,10 +93,10 @@ public class Consultorio
                 Sexo = sexo,
                 Sitomas = sintomas
             };
-            
+
             var cpfs = new List<string>();
 
-            foreach(var p in Pacientes)
+            foreach (var p in Pacientes)
                 cpfs.Add(p.Cpf);
 
             if (!paciente.ValidarCpf(cpfs))
@@ -123,31 +123,58 @@ public class Consultorio
             Console.WriteLine($"\nErro inesperado: {ex.Message}");
         }
     }
-    
-    public void obterMedicosIntevaloIdade(int inicio, int fim){
+
+    public void obterMedicosIntevaloIdade(int inicio, int fim)
+    {
 
     }
 
-    public void obterPacientesIntevaloIdade(int inicio, int fim){
-        
+    public void obterPacientesIntevaloIdade(int inicio, int fim)
+    {
+         var yearsOld = DateTime.Today.Year - BirthDate.Year;
+
     }
 
-    public void obterPacientesPorSexo(string sexo){
-         var listaPacientes = Pacientes.Where(p => p.Sexo == sexo).OrderBy(p => p.Nome).ToList();
+    public void obterPacientesPorSexo(string sexo)
+    {
+        var listaPacientes = Pacientes.Where(p => p.Sexo == sexo).OrderBy(p => p.Nome).ToList();
 
-         foreach(var paciente in listaPacientes){
-        Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd:mm")}   CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        ");
-         }
+        foreach (var paciente in listaPacientes)
+        {
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+        }
     }
-    public void obterPacientesPorOrdemAlfabetica(){
-        
+    public void obterPacientesPorOrdemAlfabetica()
+    {
+        var listaPacientes = Pacientes.OrderBy(p => p.Nome).ToList();
+
+        foreach (var paciente in listaPacientes)
+        {
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+        }
     }
-    public void obterPacientesPorSintomas(){
-        
+    public void obterPacientesPorSintomas(string sintoma)
+    {
+        var listaPacientes = Pacientes.Where(p => p.Sitomas.Contains(sintoma, StringComparison.OrdinalIgnoreCase)).OrderBy(p => p.Nome).ToList();
+
+        foreach (var paciente in listaPacientes)
+        {
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+        }
     }
 
-    public void obterAniversariantesPorSintomas(int mes){
-        
+    public void obterAniversariantesPorSintomas(int mes)
+    {
+        var listaPessoas = new List<Pessoa>();
+        listaPessoas.AddRange(Pacientes.Where(p => p.DataDeNascimento.Month == mes));
+        listaPessoas.AddRange(Medicos.Where(p => p.DataDeNascimento.Month == mes));
+
+        listaPessoas.OrderBy(p => p.Nome);
+
+        foreach (var pessoa in listaPessoas)
+        {
+            Console.WriteLine($"Nome: {pessoa.Nome}       Data de Nascimento: {pessoa.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {pessoa.Cpf}");
+        }
     }
     class ConsultorioException : Exception
     {

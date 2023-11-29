@@ -64,27 +64,67 @@ public class Menu
             switch (escolha)
             {
                 case "1":
-                    
+                    Console.Write("Informe a idade incial do médico: ");
+                    int medicoInicial = int.Parse(Console.ReadLine());
+                    Console.Write("Informe a idade final do médico: ");
+                    int medicoFinal = int.Parse(Console.ReadLine());
+                    consultorio.obterMedicosIntevaloIdade(medicoInicial, medicoFinal);
+                    Console.Write("\nPressione qualquer tecla para continuar...");
+                    Console.ReadKey();
                     break;
                 case "2":
+                    Console.Write("Informe a idade incial do paciente: ");
+                    int pacienteInicial = int.Parse(Console.ReadLine());
+                    Console.Write("Informe a idade final do paciente: ");
+                    int pacienteFinal = int.Parse(Console.ReadLine());
+                    consultorio.obterPacientesIntevaloIdade(pacienteInicial, pacienteFinal);
                     Console.Write("\nPressione qualquer tecla para continuar...");
                     Console.ReadKey();
                     break;
                 case "3":
-                    Console.Write("\nPressione qualquer tecla para continuar...");
-                    Console.ReadKey();
+                    Console.WriteLine("");
+                    Console.WriteLine("------- Selecione o Sexos -------");
+                    Console.WriteLine("1. Masculino");
+                    Console.WriteLine("2- Feminino");
+                    Console.WriteLine("0- voltar");
+                    string sexoSelecionado = Console.ReadLine();
+                    if (sexoSelecionado == "1")
+                    {
+                        consultorio.obterPacientesPorSexo(Paciente.sexoMasculino);
+                        Console.Write("\nPressione qualquer tecla para continuar...");
+                        Console.ReadKey();
+                        break;
+                    }
+                    else if (sexoSelecionado == "2")
+                    {
+                        consultorio.obterPacientesPorSexo(Paciente.sexoFeminino);
+                        Console.Write("\nPressione qualquer tecla para continuar...");
+                        Console.ReadKey();
+                        break;
+                    }
                     break;
                 case "4":
+                    consultorio.obterPacientesPorOrdemAlfabetica();
                     Console.Write("\nPressione qualquer tecla para continuar...");
                     Console.ReadKey();
                     break;
                 case "5":
+                    Console.Write("Informe o Sintoma que deseja buscar: ");
+                    string sintoma = Console.ReadLine();
+                    consultorio.obterPacientesPorSintomas(sintoma);
                     Console.Write("\nPressione qualquer tecla para continuar...");
                     Console.ReadKey();
                     break;
                 case "6":
-                    Console.Write("\nPressione qualquer tecla para continuar...");
-                    Console.ReadKey();
+                    Console.Write("Informe o mês de aniversário (entre 1 e 12): ");
+                    int mesAniversario = int.Parse(Console.ReadLine());
+                    if (mesAniversario >= 1 && mesAniversario <= 12)
+                    {
+                        consultorio.obterAniversariantesPorMes(mesAniversario);
+                        Console.Write("\nPressione qualquer tecla para continuar...");
+                        Console.ReadKey();
+                    }
+
                     break;
                 case "0":
                     sair = true;

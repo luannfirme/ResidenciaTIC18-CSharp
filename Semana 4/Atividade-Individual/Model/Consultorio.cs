@@ -124,7 +124,7 @@ public class Consultorio
 
         foreach (var medico in listaMedicos)
         {
-            Console.WriteLine($"Paciente: {medico.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+            Console.WriteLine($"Paciente: {medico.Nome}       Data de Nascimento: {medico.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {medico.Cpf}     CRM: {medico.Crm}");
         }
 
     }
@@ -135,7 +135,7 @@ public class Consultorio
 
         foreach (var paciente in listaPacientes)
         {
-            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Sexo}        Sintoma: {paciente.Sitomas}");
         }
     }
 
@@ -145,7 +145,7 @@ public class Consultorio
 
         foreach (var paciente in listaPacientes)
         {
-            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Sexo}        Sintoma: {paciente.Sitomas}");
         }
     }
     public void obterPacientesPorOrdemAlfabetica()
@@ -154,7 +154,7 @@ public class Consultorio
 
         foreach (var paciente in listaPacientes)
         {
-            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Sexo}        Sintoma: {paciente.Sitomas}");
         }
     }
     public void obterPacientesPorSintomas(string sintoma)
@@ -163,11 +163,11 @@ public class Consultorio
 
         foreach (var paciente in listaPacientes)
         {
-            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Sexo}        Sintoma: {paciente.Sitomas}");
         }
     }
 
-    public void obterAniversariantesPorSintomas(int mes)
+    public void obterAniversariantesPorMes(int mes)
     {
         var listaPessoas = new List<Pessoa>();
         listaPessoas.AddRange(Pacientes.Where(p => p.DataDeNascimento.Month == mes));

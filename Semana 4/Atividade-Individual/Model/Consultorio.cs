@@ -81,6 +81,7 @@ public class Consultorio
             Console.Write("Sexo: ");
             string sexo = Console.ReadLine();
 
+
             Console.Write("Sintomas: ");
             string sintomas = Console.ReadLine();
 
@@ -101,6 +102,9 @@ public class Consultorio
             if (!paciente.ValidarCpf(cpfs))
                 throw new ConsultorioException("\nCPF já existe.");
 
+            if (!paciente.validarSexo())
+                throw new ConsultorioException("\nSexo Informado Inválido.");
+
             Pacientes.Add(paciente);
 
             Console.WriteLine("\nMédico cadastrado com sucesso!");
@@ -119,7 +123,32 @@ public class Consultorio
             Console.WriteLine($"\nErro inesperado: {ex.Message}");
         }
     }
+    
+    public void obterMedicosIntevaloIdade(int inicio, int fim){
 
+    }
+
+    public void obterPacientesIntevaloIdade(int inicio, int fim){
+        
+    }
+
+    public void obterPacientesPorSexo(string sexo){
+        var pacientes = Pacientes.SelectMany(p => p.Sexo = sexo).ToList();
+
+        foreach(var paciente in pacientes){
+            Console.WriteLine($"Paciente: {paciente.}");
+        }
+    }
+    public void obterPacientesPorOrdemAlfabetica(){
+        
+    }
+    public void obterPacientesPorSintomas(){
+        
+    }
+
+    public void obterAniversariantesPorSintomas(int mes){
+        
+    }
     class ConsultorioException : Exception
     {
         public ConsultorioException(string message) : base(message)

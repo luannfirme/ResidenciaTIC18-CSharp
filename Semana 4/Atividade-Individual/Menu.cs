@@ -64,17 +64,25 @@ public class Menu
             switch (escolha)
             {
                 case "1":
-                    estoque.ListaProdutoSaldo();
-                    Console.Write("\nPressione qualquer tecla para continuar...");
-                    Console.ReadKey();
+                    
                     break;
                 case "2":
-                    estoque.ListaProdutoValor();
                     Console.Write("\nPressione qualquer tecla para continuar...");
                     Console.ReadKey();
                     break;
                 case "3":
-                    estoque.ListaValorEstoque();
+                    Console.Write("\nPressione qualquer tecla para continuar...");
+                    Console.ReadKey();
+                    break;
+                case "4":
+                    Console.Write("\nPressione qualquer tecla para continuar...");
+                    Console.ReadKey();
+                    break;
+                case "5":
+                    Console.Write("\nPressione qualquer tecla para continuar...");
+                    Console.ReadKey();
+                    break;
+                case "6":
                     Console.Write("\nPressione qualquer tecla para continuar...");
                     Console.ReadKey();
                     break;

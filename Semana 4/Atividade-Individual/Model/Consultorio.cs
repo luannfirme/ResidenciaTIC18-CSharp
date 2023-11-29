@@ -18,7 +18,7 @@ public class Consultorio
             string cpf = Console.ReadLine();
 
             Console.Write("Data de Vencimento (dd/MM/yyyy): ");
-            if (!DateOnly.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateOnly dataNascimento))
+            if (!DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime dataNascimento))
                 throw new ConsultorioException("\nData de nascimento inváldia.");
 
             Console.Write("CRM: ");
@@ -32,10 +32,7 @@ public class Consultorio
                 Crm = crm
             };
 
-            var cpfs = new List<string>();
-
-            foreach (var m in Medicos)
-                cpfs.Add(m.Cpf);
+            var cpfs = Medicos.Select(c => c.Cpf).ToList();
 
             if (!medico.ValidarCpf(cpfs))
                 throw new ConsultorioException("\nCPF já existe.");
@@ -75,7 +72,7 @@ public class Consultorio
             string cpf = Console.ReadLine();
 
             Console.Write("Data de Vencimento (dd/MM/yyyy): ");
-            if (!DateOnly.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateOnly dataNascimento))
+            if (!DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime dataNascimento))
                 throw new ConsultorioException("\nData de nascimento inváldia.");
 
             Console.Write("Sexo: ");
@@ -94,10 +91,7 @@ public class Consultorio
                 Sitomas = sintomas
             };
 
-            var cpfs = new List<string>();
-
-            foreach (var p in Pacientes)
-                cpfs.Add(p.Cpf);
+            var cpfs = Pacientes.Select(c => c.Cpf).ToList();
 
             if (!paciente.ValidarCpf(cpfs))
                 throw new ConsultorioException("\nCPF já existe.");
@@ -126,13 +120,23 @@ public class Consultorio
 
     public void obterMedicosIntevaloIdade(int inicio, int fim)
     {
+        var listaMedicos = Medicos.Where(p => p.DataDeNascimento >= DateTime.Today.AddYears(-inicio) && p.DataDeNascimento <= DateTime.Today.AddYears(-fim)).ToList();
+
+        foreach (var medico in listaMedicos)
+        {
+            Console.WriteLine($"Paciente: {medico.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+        }
 
     }
 
     public void obterPacientesIntevaloIdade(int inicio, int fim)
     {
-         var yearsOld = DateTime.Today.Year - BirthDate.Year;
+        var listaPacientes = Pacientes.Where(p => p.DataDeNascimento >= DateTime.Today.AddYears(-inicio) && p.DataDeNascimento <= DateTime.Today.AddYears(-fim)).ToList();
 
+        foreach (var paciente in listaPacientes)
+        {
+            Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd/MM/yyyy")}      CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        Sintoma: {paciente.Sitomas}");
+        }
     }
 
     public void obterPacientesPorSexo(string sexo)

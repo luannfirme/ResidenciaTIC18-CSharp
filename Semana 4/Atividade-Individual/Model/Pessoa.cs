@@ -4,7 +4,7 @@ public class Pessoa
 {
     public string Nome { get; set; }
     public string Cpf { get; set; }
-    public DateOnly DataDeNascimento { get; set; }
+    public DateTime DataDeNascimento { get; set; }
 
 public virtual bool ValidarCpf(List<string> cpfs){
     var cpfExistente = cpfs.FirstOrDefault(Cpf);

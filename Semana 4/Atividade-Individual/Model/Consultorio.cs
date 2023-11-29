@@ -3,7 +3,7 @@
 public class Consultorio
 {
     public List<Medico> Medicos { get; set; } = new();
-    public List<Paciente> Pacientes { get; set; } = new List<Paciente>();
+    public List<Paciente> Pacientes { get; set; } = new();
 
     public void CadastrarMedico()
     {
@@ -133,11 +133,11 @@ public class Consultorio
     }
 
     public void obterPacientesPorSexo(string sexo){
-        var pacientes = Pacientes.SelectMany(p => p.Sexo = sexo).ToList();
+         var listaPacientes = Pacientes.Where(p => p.Sexo == sexo).OrderBy(p => p.Nome).ToList();
 
-        foreach(var paciente in pacientes){
-            Console.WriteLine($"Paciente: {paciente.}");
-        }
+         foreach(var paciente in listaPacientes){
+        Console.WriteLine($"Paciente: {paciente.Nome}       Data de Nascimento: {paciente.DataDeNascimento.ToString("dd:mm")}   CPF: {paciente.Cpf}     Sexo: {paciente.Cpf}        ");
+         }
     }
     public void obterPacientesPorOrdemAlfabetica(){
         

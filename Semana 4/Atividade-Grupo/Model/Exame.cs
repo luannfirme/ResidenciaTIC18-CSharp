@@ -1,4 +1,4 @@
-﻿namespace Atividade_Grupo;
+﻿namespace ProvaGrupoNET;
 
 public class Exame
 {

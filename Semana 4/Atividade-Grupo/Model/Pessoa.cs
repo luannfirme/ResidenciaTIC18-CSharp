@@ -1,4 +1,6 @@
-﻿namespace Atividade_Grupo;
+﻿using System.Text.RegularExpressions;
+
+namespace ProvaGrupoNET;
 
 public class Pessoa
 {
@@ -6,14 +8,12 @@ public class Pessoa
     public DateTime DataDeNascimento { get; set; }
     public string Cpf { get; set; }
 
-    public virtual string ValidadarCPF(List<string> cpf){
+    public virtual string ValidarCPF(List<string> cpfs)
+    {
+        if (!Regex.IsMatch(Cpf, @"^\d{3}\.\d{3}\.\d{3}-\d{2}$"))
+            return "CPF deve estar no formato 000.000.000-00";
 
-        if(Cpf.Length < 11)
-            return "CPF incompleto";
-
-        var cpfExistente = cpf.Where(c => c == Cpf);
-
-        if(cpfExistente.Any() || cpfExistente != null)
+        if (cpfs.Any(p => p == Cpf))
             return "CPF já cadastrado";
 
         return null;

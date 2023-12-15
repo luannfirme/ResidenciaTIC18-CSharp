@@ -1,4 +1,5 @@
 using Api;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using techmed;
 using Techmed.Entities;
 
 namespace Techmed.Model;
@@ -9,7 +8,8 @@ public class TechmedContext : DbContext
     public DbSet<Paciente> Pacientes { get; set; }
     public DbSet<Medico> Medicos { get; set; }
     public DbSet<Atendimento> Atendimentos { get; set; }
-    
+    public DbSet<Exame> Exames { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);

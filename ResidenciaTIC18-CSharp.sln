@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{5646DF54-0AD5-4B60-8AA3-F8EE52152636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{5646DF54-0AD5-4B60-8AA3-F8EE52152636}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{8C61DC6F-8DB2-4E36-AEEE-1C94674E5D21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{8C61DC6F-8DB2-4E36-AEEE-1C94674E5D21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{80102A32-1C19-4024-8614-83ABBC572515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{80102A32-1C19-4024-8614-83ABBC572515}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Semana 2", "Semana 2", "{7C10CF7B-BC8D-4846-9DCD-44CA269A79C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techmed", "Semana 2\techmed\techmed.csproj", "{984BA432-0BA5-4C41-90DD-8C18358E4243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techmed", "Semana 2\techmed\techmed.csproj", "{984BA432-0BA5-4C41-90DD-8C18358E4243}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Semana 1", "Semana 1", "{8D3833C1-EE35-4525-A7D4-F9ED0C89742F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{5646DF54-0AD5-4B60-8AA3-F8EE52152636} = {8D3833C1-EE35-4525-A7D4-F9ED0C89742F}
+		{8C61DC6F-8DB2-4E36-AEEE-1C94674E5D21} = {8D3833C1-EE35-4525-A7D4-F9ED0C89742F}
+		{80102A32-1C19-4024-8614-83ABBC572515} = {8D3833C1-EE35-4525-A7D4-F9ED0C89742F}
 		{984BA432-0BA5-4C41-90DD-8C18358E4243} = {7C10CF7B-BC8D-4846-9DCD-44CA269A79C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

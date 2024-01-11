@@ -19,6 +19,53 @@ namespace techmed.Migrations
                 .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Techmed.Entities.Atendimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataHora")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("MedicoId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PacienteId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicoId1");
+
+                    b.HasIndex("PacienteId1");
+
+                    b.ToTable("Atendimentos");
+                });
+
+            modelBuilder.Entity("Techmed.Entities.Exame", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AtendimentoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataHora")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Local")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AtendimentoId");
+
+                    b.ToTable("Exames");
+                });
+
             modelBuilder.Entity("Techmed.Entities.Medico", b =>
                 {
                     b.Property<int>("Id")
@@ -73,47 +120,39 @@ namespace techmed.Migrations
                     b.ToTable("Pacientes", (string)null);
                 });
 
-            modelBuilder.Entity("techmed.Atendimento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DataHora")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("MedicoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PacienteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicoId");
-
-                    b.HasIndex("PacienteId");
-
-                    b.ToTable("Atendimentos");
-                });
-
-            modelBuilder.Entity("techmed.Atendimento", b =>
+            modelBuilder.Entity("Techmed.Entities.Atendimento", b =>
                 {
                     b.HasOne("Techmed.Entities.Medico", "Medico")
                         .WithMany("Atendimentos")
-                        .HasForeignKey("MedicoId")
+                        .HasForeignKey("MedicoId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Techmed.Entities.Paciente", "Paciente")
                         .WithMany()
-                        .HasForeignKey("PacienteId")
+                        .HasForeignKey("PacienteId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Medico");
 
                     b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("Techmed.Entities.Exame", b =>
+                {
+                    b.HasOne("Techmed.Entities.Atendimento", "Atendimento")
+                        .WithMany("Exames")
+                        .HasForeignKey("AtendimentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Atendimento");
+                });
+
+            modelBuilder.Entity("Techmed.Entities.Atendimento", b =>
+                {
+                    b.Navigation("Exames");
                 });
 
             modelBuilder.Entity("Techmed.Entities.Medico", b =>

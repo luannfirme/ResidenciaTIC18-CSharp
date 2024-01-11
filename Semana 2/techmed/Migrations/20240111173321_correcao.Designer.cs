@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Techmed.Model;
 
@@ -10,9 +11,11 @@ using Techmed.Model;
 namespace techmed.Migrations
 {
     [DbContext(typeof(TechmedContext))]
-    partial class TechmedContextModelSnapshot : ModelSnapshot
+    [Migration("20240111173321_correcao")]
+    partial class correcao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,54 +74,6 @@ namespace techmed.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pacientes", (string)null);
-                });
-
-            modelBuilder.Entity("techmed.Atendimento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DataHora")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("MedicoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PacienteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicoId");
-
-                    b.HasIndex("PacienteId");
-
-                    b.ToTable("Atendimentos");
-                });
-
-            modelBuilder.Entity("techmed.Atendimento", b =>
-                {
-                    b.HasOne("Techmed.Entities.Medico", "Medico")
-                        .WithMany("Atendimentos")
-                        .HasForeignKey("MedicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Techmed.Entities.Paciente", "Paciente")
-                        .WithMany()
-                        .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Medico");
-
-                    b.Navigation("Paciente");
-                });
-
-            modelBuilder.Entity("Techmed.Entities.Medico", b =>
-                {
-                    b.Navigation("Atendimentos");
                 });
 #pragma warning restore 612, 618
         }

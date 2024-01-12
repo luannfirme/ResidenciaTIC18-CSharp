@@ -1,16 +1,17 @@
-﻿using Techmed.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using Techmed.Model;
 
 var context = new TechmedContext();
 
-Console.WriteLine($"Lendo todos os médicos no banco de dados");
-foreach (var med in context.Medicos.OrderBy(m => m.Nome))
-{
-    Console.WriteLine($"Id: {med.Id} - Nome: {med.Nome} - CRM: {med.CRM}");
-}
 
-Console.WriteLine($"Lendo todos os pacientes no banco de dados");
-foreach (var pac in context.Pacientes.OrderBy(m => m.Nome))
-{
-    Console.WriteLine($"Id: {pac.Id} - Nome: {pac.Nome} - CRM: {pac.CPF}");
-}
+var maria = context.Pacientes.Where(p => p.CPF == "047.202.303-02").FirstOrDefault();
+
+var Atendimentos = context.Atendimentos.AsNoTrackingWithIdentityResolution()
+                    .Include(m => m.Medico)
+                    .Include(p => p.Paciente)
+                    .Include(e => e.Exames)
+                    .ToList();
+
+Atendimentos.ForEach( a => {
+    Console.WriteLine($"Paciente: {a.Paciente.Nome} /n Exames: /n {a.Exames.Where(e => e.Atendimento.Paciente == a.Paciente)}");
+});

@@ -1,4 +1,4 @@
-﻿namespace Techmed.Entities;
+﻿namespace TechmedCC.Entities.Entities;
 
 public class Paciente : Pessoa
 {

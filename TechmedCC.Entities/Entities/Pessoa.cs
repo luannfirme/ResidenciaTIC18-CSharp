@@ -1,4 +1,4 @@
-﻿namespace TechmedCC.Entities.Entities;
+﻿namespace TechmedCC.Domain.Entities;
 public abstract class Pessoa
 {
     public int Id { get; set; }

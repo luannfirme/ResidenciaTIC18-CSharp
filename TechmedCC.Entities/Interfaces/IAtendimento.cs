@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TechmedCC.Domain.Entities;
 
 namespace TechmedCC.Domain.Interfaces
 {
-    internal interface IAtendimento
+    public interface IAtendimento : IBaseRepository<Atendimento>
     {
     }
 }

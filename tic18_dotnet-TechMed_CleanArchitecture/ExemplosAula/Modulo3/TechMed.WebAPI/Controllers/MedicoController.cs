@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using TechMed.Application.ViewModels;
 using TechMed.Application.InputModels;
 using TechMed.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TechMed.WebAPI.Controllers;
 
 [ApiController]
 [Route("/api/v0.1/")]
+[Authorize]
 public class MedicoController : ControllerBase
 {
    private readonly IMedicoService _medicoService;

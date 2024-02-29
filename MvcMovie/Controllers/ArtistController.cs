@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -22,9 +18,10 @@ namespace MvcMovie.Controllers
         // GET: Artist
         public async Task<IActionResult> Index()
         {
-              return _context.Artist != null ? 
+            return _context.Artist != null ?
                           View(await _context.Artist.ToListAsync()) :
                           Problem("Entity set 'MvcMovieContext.Artist'  is null.");
+
         }
 
         // GET: Artist/Details/5
@@ -42,9 +39,11 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
+
             return View(artist);
         }
 
+        [Authorize(Policy = "RequireAdmin")]
         // GET: Artist/Create
         public IActionResult Create()
         {
@@ -54,6 +53,7 @@ namespace MvcMovie.Controllers
         // POST: Artist/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Bio,Site")] Artist artist)
@@ -68,6 +68,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist/Edit/5
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Artist == null)
@@ -88,6 +89,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Bio,Site")] Artist artist)
         {
             if (id != artist.Id)
@@ -119,6 +121,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist/Delete/5
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Artist == null)
@@ -139,6 +142,7 @@ namespace MvcMovie.Controllers
         // POST: Artist/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Artist == null)
@@ -150,14 +154,14 @@ namespace MvcMovie.Controllers
             {
                 _context.Artist.Remove(artist);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ArtistExists(int id)
         {
-          return (_context.Artist?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Artist?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

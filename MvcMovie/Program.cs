@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using MvcMovie.Data;
+using MvcMovie.Data.Security;
+using System.Security.Claims;
+
 var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsDevelopment())
@@ -10,21 +14,46 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    //TODO: configurar MySql
 }
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie(options =>
+{
+    options.Cookie.Name = "authToken";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.SlidingExpiration = true;
+});
+
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdmin", policy =>
+    {
+        policy.RequireClaim(ClaimTypes.Role, "admin");
+    });
+});
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new CustomAuthorizationFilter());
+});
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -32,6 +61,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
+//app.UseMiddleware<ClaimsMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

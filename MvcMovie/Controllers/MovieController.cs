@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movie/Create
+        [Authorize(Policy = "RequireAdmin")]
         public IActionResult Create()
         {
             ViewData["StudioId"] = new SelectList(_context.Studio, "Id", "Name");
@@ -56,6 +58,7 @@ namespace MvcMovie.Controllers
         // POST: Movie/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie, string[] Artists)
@@ -72,6 +75,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movie/Edit/5
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Movie == null)
@@ -91,6 +95,7 @@ namespace MvcMovie.Controllers
         // POST: Movie/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie)
@@ -125,6 +130,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movie/Delete/5
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Movie == null)
@@ -144,6 +150,7 @@ namespace MvcMovie.Controllers
         }
 
         // POST: Movie/Delete/5
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studio/Create
+        [Authorize(Policy = "RequireAdmin")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +56,7 @@ namespace MvcMovie.Controllers
         // POST: Studio/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Country,Website")] Studio studio)
@@ -68,6 +71,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studio/Edit/5
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Studio == null)
@@ -86,6 +90,7 @@ namespace MvcMovie.Controllers
         // POST: Studio/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Country,Website")] Studio studio)
@@ -119,6 +124,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studio/Delete/5
+        [Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Studio == null)
@@ -137,6 +143,7 @@ namespace MvcMovie.Controllers
         }
 
         // POST: Studio/Delete/5
+        [Authorize(Policy = "RequireAdmin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

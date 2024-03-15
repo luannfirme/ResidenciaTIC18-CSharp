@@ -1,6 +1,5 @@
 ﻿using Exercicio1.Class;
 using Exercicio1.Exceptions;
-using System;
 
 internal class Program
 {
